@@ -19,8 +19,9 @@
       });
   }
 
-  NotesController.$inject = ['$scope'];
-  function NotesController($scope) {
+  NotesController.$inject = ['$state', '$scope'];
+  function NotesController($state, $scope) {
+    $state.go('notes.form');
     $scope.editing = false;
     $scope.notes = [];
     $scope.note = { title: '', body: ''};
