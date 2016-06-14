@@ -4,9 +4,13 @@
       <button class="btn btn-default">
         New Note
       </button>
-      <ul id="notes">
-        <li>Note 1</li>
-        <li>Note 2</li>
+      <ul id="notes" ng-repeat="note in notes track by $index">
+        <li>
+          <span class="note-title" ng-bind="note.title"></span>
+          <span class="note-body" ng-bind="note.body"></span>
+          <a ng-click="removeNote($index)" style="color: black">Remove</a>
+          <a ng-click="editNote(note)" style="color: black">Edit</a>
+        </li>
       </ul>
     </nav>
     <main class="col-xs-8" ui-view></main>
