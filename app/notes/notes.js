@@ -31,9 +31,9 @@
       $scope.note.title = '';
       $scope.note.body = '';
     }
-    $scope.removeNote = function(index) {
-      $scope.notes.splice(index, 1);
-    }
+    // $scope.removeNote = function(index) {
+    //   $scope.notes.splice(index, 1);
+    // }
     $scope.editNote = function(note) {
       $scope.editing = true;
       $scope.note = note;
