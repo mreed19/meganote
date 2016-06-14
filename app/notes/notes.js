@@ -19,10 +19,10 @@
       });
   }
 
-  NotesController.$inject = ['$state', '$scope'];
-  function NotesController($state, $scope) {
+  NotesController.$inject = ['$state', '$scope', 'NotesService'];
+  function NotesController($state, $scope, NotesService) {
     $state.go('notes.form');
-    $scope.editing = false;
+    NotesService.getNotes();
     $scope.notes = [];
     $scope.note = { title: '', body: ''};
     $scope.addNote = function() {
@@ -31,16 +31,8 @@
       $scope.note.title = '';
       $scope.note.body = '';
     }
-    // $scope.removeNote = function(index) {
-    //   $scope.notes.splice(index, 1);
-    // }
     $scope.editNote = function(note) {
-      $scope.editing = true;
       $scope.note = note;
-    }
-    $scope.updateNote = function() {
-      $scope.note = {};
-      $scope.editing = false;
     }
   }
 })();
