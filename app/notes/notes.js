@@ -26,12 +26,10 @@
     .then(function() {
       $scope.notes = NotesService.notes;
     });
-    $scope.note = { title: '', body: ''};
+    $scope.note = { title: '', body_html: ''};
     $scope.addNote = function() {
-      $scope.notes.push($scope.note);
-      $scope.note = {};
-      $scope.note.title = '';
-      $scope.note.body = '';
+      NotesService.createNote($scope.note);
+      $scope.note = { title: '', body_html: ''};
     };
     $scope.editNote = function(note) {
       $scope.note = note;
