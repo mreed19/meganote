@@ -32,9 +32,9 @@
       $scope.note = {};
       $scope.note.title = '';
       $scope.note.body = '';
-    }
+    };
     $scope.editNote = function(note) {
       $scope.note = note;
-    }
+    };
   }
 })();

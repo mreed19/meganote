@@ -13,6 +13,6 @@
         service.notes = res.data;
       });
       return notesPromise;
-    }
+    };
   }
 })();
