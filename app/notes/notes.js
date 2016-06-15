@@ -48,6 +48,13 @@
       $scope.note = angular.copy(note);
     };
 
+    $scope.deleteNote = function() {
+      NotesService.deleteNote($scope.note)
+      .then(function() {
+        $scope.clearForm();
+      });
+    };
+
 
     $scope.clearForm();
   }

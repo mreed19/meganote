@@ -39,6 +39,15 @@
       return notesPromise;
     };
 
+    service.deleteNote = function(note) {
+      var notesPromise = $http.delete('https://meganote.herokuapp.com/notes/' + note._id);
+      notesPromise.then(function(res) {
+        service.removeById(res.data.note._id);
+      });
+
+      return notesPromise;
+    };
+
     service.removeById = function(id) {
       for (var i = 0; i < service.notes.length; i++) {
         if (service.notes[i]._id === id) {
