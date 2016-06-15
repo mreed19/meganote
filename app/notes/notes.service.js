@@ -26,5 +26,18 @@
 
       return notesPromise;
     };
+
+    service.updateNote = function(note) {
+      var notesPromise = $http.put('https://meganote.herokuapp.com/notes/' + note._id, {
+        note: note
+      });
+      return notesPromise;
+    };
+
+    service.deleteNote = function(index) {
+      var notesPromise = $http.delete('https://meganote.herokuapp.com/notes/' + index);
+
+      return notesPromise;
+    };
   }
 })();

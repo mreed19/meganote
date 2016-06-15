@@ -29,6 +29,7 @@
 
     $scope.clearForm = function() {
       $scope.note = { title: '', body_html: ''};
+      $scope.editing = false;
     };
 
     $scope.addNote = function() {
@@ -37,7 +38,23 @@
     };
 
     $scope.editNote = function(note) {
+      $scope.editing = true;
       $scope.note = note;
+    };
+
+    $scope.updateNote = function() {
+      NotesService.updateNote($scope.note);
+      $scope.clearForm();
+    };
+
+    $scope.removeNote = function() {
+      NotesService.deleteNote($scope.note._id);
+      for (var i=0; i < $scope.notes.length; i++) {
+        if ($scope.notes[i]._id === $scope.note._id) {
+          $scope.notes.splice(i, 1);
+        }
+      }
+      $scope.clearForm();
     };
 
     $scope.clearForm();
