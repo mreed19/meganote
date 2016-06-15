@@ -37,9 +37,11 @@
         NotesService.updateNote($scope.note);
       }
       else {
-        NotesService.createNote($scope.note);
+        NotesService.createNote($scope.note)
+        .then(function(res) {
+          $scope.note = res.data.note;
+        });
       }
-      $scope.clearForm();
     };
 
     $scope.editNote = function(note) {
