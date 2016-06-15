@@ -31,13 +31,20 @@
       var notesPromise = $http.put('https://meganote.herokuapp.com/notes/' + note._id, {
         note: note
       });
+
+      notesPromise.then(function(res) {
+        service.removeById(res.data.note._id);
+        service.notes.unshift(res.data.note);
+      });
       return notesPromise;
     };
 
-    service.deleteNote = function(index) {
-      var notesPromise = $http.delete('https://meganote.herokuapp.com/notes/' + index);
-
-      return notesPromise;
+    service.removeById = function(id) {
+      for (var i = 0; i < service.notes.length; i++) {
+        if (service.notes[i]._id === id) {
+          service.notes.splice(i, 1);
+        }
+      }
     };
   }
 })();
