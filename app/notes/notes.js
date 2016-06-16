@@ -38,6 +38,9 @@
         .then(function(res) {
           $scope.note = res.data.note;
           Flash.create('success', res.data.message);
+        },
+        function() {
+          Flash.create('danger', 'Oops! Something went wrong');
         });
       }
       else {
@@ -45,6 +48,9 @@
         .then(function(res) {
           $scope.note = res.data.note;
           Flash.create('success', res.data.message);
+        },
+        function() {
+          Flash.create('danger', 'Oops! Something went wrong');
         });
       }
     };
