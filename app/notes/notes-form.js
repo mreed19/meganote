@@ -36,8 +36,12 @@
 
     $scope.deleteNote = function() {
       NotesService.deleteNote($scope.note)
-      .then(function() {
+      .then(function(res) {
         $scope.clearForm();
+        Flash.create('success', res.data.message);
+      },
+      function() {
+        Flash.create('danger', 'Oops! Something went wrong!');
       });
     };
   }
