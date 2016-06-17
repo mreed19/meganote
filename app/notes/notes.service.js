@@ -8,7 +8,7 @@
     service.notes = [];
 
     service.getNotes = function() {
-      var notesPromise = $http.get('https://meganote.herokuapp.com/notes');
+      var notesPromise = $http.get('http://localhost:3030');
       notesPromise.then(function(res) {
         service.notes = res.data;
       });
