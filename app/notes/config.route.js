@@ -1,10 +1,12 @@
 (function() {
-  angular.module('meganote.notes')
-  .config(notesConfig)
-  .controller('NotesController', NotesController);
+  'use strict';
 
-  notesConfig.$inject = ['$stateProvider'];
-  function notesConfig($stateProvider) {
+  angular
+    .module('meganote.notes')
+    .config(configFunction);
+
+  configFunction.$inject = ['$stateProvider'];
+  function configFunction($stateProvider) {
     $stateProvider
 
       .state('notes', {
@@ -26,10 +28,5 @@
   notesLoaded.$inject = ['NotesService'];
   function notesLoaded(NotesService) {
     return NotesService.getNotes();
-  }
-
-  NotesController.$inject = ['$scope', 'NotesService'];
-  function NotesController($scope, NotesService) {
-    $scope.notes = NotesService.notes;
   }
 })();
