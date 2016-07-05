@@ -13,7 +13,7 @@
 
     $scope.saveNote = function() {
       if ($scope.note._id) {
-        NotesService.updateNote($scope.note)
+        NotesService.update($scope.note)
         .then(function(res) {
           $scope.note = res.data.note;
           Flash.create('success', res.data.message);
@@ -23,7 +23,7 @@
         });
       }
       else {
-        NotesService.createNote($scope.note)
+        NotesService.create($scope.note)
         .then(function(res) {
           $scope.note = res.data.note;
           Flash.create('success', res.data.message);
@@ -35,7 +35,7 @@
     };
 
     $scope.deleteNote = function() {
-      NotesService.deleteNote($scope.note)
+      NotesService.destroy($scope.note)
       .then(function(res) {
         $scope.clearForm();
         Flash.create('success', res.data.message);
