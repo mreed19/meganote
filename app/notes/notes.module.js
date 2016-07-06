@@ -1,5 +1,5 @@
 (function() {
   'use strict';
 
-  angular.module('meganote.notes', ['ui.router']);
+  angular.module('meganote.notes', []);
 })();
