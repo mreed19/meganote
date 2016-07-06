@@ -1,21 +1,29 @@
 (function() {
+  'use strict';
   angular.module('meganote.notesForm')
     .controller('NotesFormController', NotesFormController);
 
-  NotesFormController.$inject = ['$state', '$scope', 'Flash', 'NotesService'];
-  function NotesFormController($state, $scope, Flash, NotesService) {
-    $scope.note = NotesService.find($state.params.noteId);
+  NotesFormController.$inject = ['$state', 'Flash', 'NotesService'];
+  function NotesFormController($state, Flash, NotesService) {
+    var vm = this;
 
-    $scope.clearForm = function() {
-      $scope.note = { title: '', body_html: ''};
-      $scope.editing = false;
-    };
+    vm.note = NotesService.find($state.params.noteId);
+    vm.clearForm = clearForm;
+    vm.save = save;
+    vm.destroy = destroy;
 
-    $scope.saveNote = function() {
-      if ($scope.note._id) {
-        NotesService.update($scope.note)
+    /////////////////////
+
+    function clearForm() {
+      vm.note = { title: '', body_html: ''};
+      vm.editing = false;
+    }
+
+    function save() {
+      if (vm.note._id) {
+        NotesService.update(vm.note)
         .then(function(res) {
-          $scope.note = res.data.note;
+          vm.note = res.data.note;
           Flash.create('success', res.data.message);
         },
         function() {
@@ -23,26 +31,26 @@
         });
       }
       else {
-        NotesService.create($scope.note)
+        NotesService.create(vm.note)
         .then(function(res) {
-          $scope.note = res.data.note;
+          vm.note = res.data.note;
           Flash.create('success', res.data.message);
         },
         function() {
           Flash.create('danger', 'Oops! Something went wrong');
         });
       }
-    };
+    }
 
-    $scope.deleteNote = function() {
-      NotesService.destroy($scope.note)
+    function destroy() {
+      NotesService.destroy(vm.note)
       .then(function(res) {
-        $scope.clearForm();
+        vm.clearForm();
         Flash.create('success', res.data.message);
       },
       function() {
         Flash.create('danger', 'Oops! Something went wrong!');
       });
-    };
+    }
   }
 }());

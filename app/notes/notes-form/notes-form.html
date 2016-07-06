@@ -1,7 +1,7 @@
-<form ng-submit="saveNote()">
+<form ng-submit="vm.save()">
   <p>
     <input
-      ng-model="note.title"
+      ng-model="vm.note.title"
       type="text"
       name="title"
       id="note_title"
@@ -9,7 +9,7 @@
   </p>
   <p>
     <text-angular
-      ng-model="note.body_html"
+      ng-model="vm.note.body_html"
       name="body_html"
       placeholder="Just start typing..."
       ta-toolbar="[
@@ -24,9 +24,9 @@
     <input
       type="submit"
       name="commit"
-      value="{{ note._id ? 'Update Note' : 'Create Note' }}"
+      value="{{ vm.note._id ? 'Update Note' : 'Create Note' }}"
       class="btn btn-default">
-    <a ng-show="note._id" ng-click="deleteNote()"><i class="fa fa-trash-o"></i></a>
+    <a ng-show="vm.note._id" ng-click="vm.destroy()"><i class="fa fa-trash-o"></i></a>
   </div>
 </form>
 
