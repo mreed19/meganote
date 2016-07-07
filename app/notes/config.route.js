@@ -1,6 +1,4 @@
-(function() {
-  'use strict';
-
+{
   angular
     .module('meganote.notes')
     .config(configFunction);
@@ -31,4 +29,4 @@
   function notesLoaded(NotesService) {
     return NotesService.getNotes();
   }
-})();
+}

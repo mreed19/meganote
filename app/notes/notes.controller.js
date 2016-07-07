@@ -1,12 +1,11 @@
-(function() {
-  angular.module('meganote.notes')
-  .controller('NotesController', NotesController);
-
+{
+  angular
+    .module('meganote.notes')
+    .controller('NotesController', NotesController);
 
   NotesController.$inject = ['NotesService'];
   function NotesController(NotesService) {
-    var vm = this;
-
+    const vm = this;
     vm.notes = NotesService.notes;
   }
-})();
+}

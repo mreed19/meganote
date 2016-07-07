@@ -1,4 +1,4 @@
-(function() {
+{
   angular.module('meganote', [
     'ui.router',
     'ngFlash',
@@ -12,5 +12,4 @@
   function configFunction($urlRouterProvider) {
     $urlRouterProvider.otherwise('/notes/');
   }
-
-})();
+}
