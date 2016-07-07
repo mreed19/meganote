@@ -38,7 +38,7 @@
     }
 
     function update(note) {
-      const notesPromise = $http.put(API_BASE + note._id, {
+      const notesPromise = $http.put(`${API_BASE}${note._id}`, {
         note: note
       });
       notesPromise.then(function(res) {
@@ -49,7 +49,7 @@
     }
 
     function destroy(note) {
-      const notesPromise = $http.delete(API_BASE + note._id);
+      const notesPromise = $http.delete(`${API_BASE}${note._id}`);
       notesPromise.then(function(res) {
         service.removeById(res.data.note._id);
       });
