@@ -8,10 +8,14 @@
 
         class UsersService {
           create(user) {
-            return $http.get(API_BASE)
-              .then(res => {
+            return $http.post(`${API_BASE}users`, {
+              user
+            })
+            .then(
+              res => {
                 console.log(res.data);
-              });
+              }
+            );
           }
         }
 
