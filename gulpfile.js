@@ -1,6 +1,5 @@
 (function() {
   'use strict';
-  /*eslint-disable*/
   var gulp = require('gulp');
   var order = require('gulp-order');
   var concat = require('gulp-concat');
@@ -8,7 +7,6 @@
   var sourcemaps = require('gulp-sourcemaps');
   var babel = require('gulp-babel');
   var connect = require('gulp-connect');
-  /*eslint-enable*/
 
   gulp.task('bundle', bundle);
   gulp.task('start-web-server', startWebServer);
@@ -32,7 +30,9 @@
       ], { base: './' }))
       .pipe(plumber())                // restart gulp on error
       .pipe(sourcemaps.init())        // let sourcempas watch this pipeline
-      .pipe(babel())                  // transpile into ES5 for browsers
+      .pipe(babel({
+        presets: ['es2015']
+      }))                  // transpile into ES5 for browsers
       .pipe(concat('bundle.js'))      // concatenate all JS files
       .pipe(sourcemaps.write('.'))    // emit the .map file for debugging
       .pipe(gulp.dest('app/content'));
