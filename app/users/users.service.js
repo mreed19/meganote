@@ -4,18 +4,23 @@
     .service('UsersService', [
       '$http',
       'API_BASE',
-      ($http, API_BASE) =>{
+      'AuthToken',
+      'CurrentUser',
+      ($http, API_BASE, AuthToken, CurrentUser) =>{
 
         const apiURI = `${API_BASE}users/`;
 
         class UsersService {
+
+          // Sign up
           create(user) {
             return $http.post(apiURI, {
               user
             })
             .then(
               res => {
-                console.log(res.data);
+                AuthToken.set(res.data.authToken);
+                CurrentUser.set(res.data.user);
               }
             );
           }
