@@ -4,14 +4,16 @@
     .directive('userProfile', [
 
       'CurrentUser',
-      (CurrentUser) => {
+      'UsersService',
+      (CurrentUser, UsersService) => {
         class UserProfileController {
           constructor() {
             var vm = this;
             vm.user = angular.copy(CurrentUser.get());
           }
           submit() {
-
+            var vm = this;
+            UsersService.update(vm.user);
           }
         }
 
