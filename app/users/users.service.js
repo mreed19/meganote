@@ -32,6 +32,17 @@
                 res => CurrentUser.set(res.data.user)
               );
           }
+
+          // Login
+          login(user) {
+            return $http.post(`${API_BASE}sessions/`, { user })
+              .then(
+                res => {
+                  AuthToken.set(res.data.authToken);
+                  CurrentUser.set(res.data.user);
+                }
+              );
+          }
         }
 
         return new UsersService();

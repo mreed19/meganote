@@ -3,9 +3,17 @@
     .module('meganote.signIn')
     .directive('signIn', [
 
-      () => {
+      '$state',
+      'UsersService',
+      ($state, UsersService) => {
         class SignInController {
-
+          submit() {
+            var vm = this;
+            UsersService.login(vm.user)
+              .then(
+                () => $state.go('notes.form', { noteId: undefined })
+              );
+          }
         }
 
         return {
