@@ -4,8 +4,9 @@
     .directive('signUp', [
 
       '$state',
+      'Flash',
       'UsersService',
-      ($state, UsersService) => {
+      ($state, Flash, UsersService) => {
 
         class SignUpController {
           constructor() {
@@ -14,7 +15,8 @@
           submit() {
             UsersService.create(this.user)
               .then(
-                () => $state.go('notes.form', { noteId: undefined })
+                () => $state.go('notes.form', { noteId: undefined }),
+                res => Flash.create('danger', res.data.message)
               );
           }
         }

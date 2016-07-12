@@ -14,15 +14,16 @@
 
           // Sign up
           create(user) {
-            return $http.post(apiURI, {
+            const usersPromise = $http.post(apiURI, {
               user
-            })
-            .then(
+            });
+            usersPromise.then(
               res => {
                 AuthToken.set(res.data.authToken);
                 CurrentUser.set(res.data.user);
               }
             );
+            return usersPromise;
           }
 
           // Update Profile
