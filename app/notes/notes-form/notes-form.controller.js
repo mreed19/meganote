@@ -45,11 +45,11 @@
 
     function destroy() {
       NotesService.destroy(vm.note)
-      .then(res => {
-        vm.clearForm();
-        Flash.create('success', res.data.message);
-      },
-      () => Flash.create('danger', 'Oops! Something went wrong!')
+      .then(
+        () => {
+          $state.go('notes.form', { noteId: undefined });
+        },
+        () => Flash.create('danger', 'Oops! Something went wrong!')
       );
     }
   }
