@@ -4,14 +4,16 @@
     .directive('signIn', [
 
       '$state',
+      'Flash',
       'UsersService',
-      ($state, UsersService) => {
+      ($state, Flash, UsersService) => {
         class SignInController {
           submit() {
             var vm = this;
             UsersService.login(vm.user)
               .then(
-                () => $state.go('notes.form', { noteId: undefined })
+                () => $state.go('notes.form', { noteId: undefined }),
+                res => Flash.create('danger', res.data.message)
               );
           }
         }
@@ -50,6 +52,10 @@
                     <a ui-sref="sign-up">Sign up!</a>
                   </span>
                 </form>
+                <flash-message
+                  duration="5000"
+                  show-close="false"
+                  ></flash-message>
               </div>
             </div>
           </div>

@@ -3,9 +3,10 @@
     .module('meganote.users')
     .directive('userProfile', [
 
+      'Flash',
       'CurrentUser',
       'UsersService',
-      (CurrentUser, UsersService) => {
+      (Flash, CurrentUser, UsersService) => {
         class UserProfileController {
           constructor() {
             var vm = this;
@@ -13,7 +14,10 @@
           }
           submit() {
             var vm = this;
-            UsersService.update(vm.user);
+            UsersService.update(vm.user).then(
+              () => Flash.create('success', 'Successfully updated user.'),
+              res => Flash.create('danger', res.data.message)
+            );
           }
         }
 
@@ -52,6 +56,10 @@
                       Back to my notes
                     </a>
                 </form>
+                <flash-message
+                  duration="5000"
+                  show-close="false"
+                  ></flash-message>
               </div>
             </div>
           </div>
