@@ -16,7 +16,14 @@
             var vm = this;
             UsersService.update(vm.user).then(
               () => Flash.create('success', 'Successfully updated user.'),
-              res => Flash.create('danger', res.data.message)
+              res =>  {
+                if (res.data.errors.name) {
+                  Flash.create('danger', res.data.errors.name.message);
+                }
+                if (res.data.errors.username) {
+                  Flash.create('danger', res.data.errors.username.message);
+                }
+              }
             );
           }
         }
@@ -32,7 +39,7 @@
             <div class="row">
               <div class="col-xs-6 col-xs-offset-4">
                 <h3>Update Your Profile</h3>
-                <form id="new_user" ng-submit="vm.submit()">
+                <form id="new_user" ng-submit="vm.submit()" novalidate>
                   <p>
                     <label for="name">Full Name</label><br>
                     <input

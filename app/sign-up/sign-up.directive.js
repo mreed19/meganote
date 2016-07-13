@@ -16,7 +16,19 @@
             UsersService.create(this.user)
               .then(
                 () => $state.go('notes.form', { noteId: undefined }),
-                res => Flash.create('danger', res.data.message)
+                res => {
+                  if (res.data.errors) {
+                    if (res.data.errors.name) {
+                      Flash.create('danger', res.data.errors.name.message);
+                    }
+                    if (res.data.errors.username) {
+                      Flash.create('danger', res.data.errors.username.message);
+                    }
+                  }
+                  else {
+                    Flash.create('danger', res.data.message);
+                  }
+                }
               );
           }
         }
