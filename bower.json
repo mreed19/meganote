@@ -12,7 +12,8 @@
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.6.3",
     "textAngular": "^1.5.1",
-    "angular-flash-alert": "^2.3.0"
+    "angular-flash-alert": "^2.3.0",
+    "angular-spinner": "^0.8.1"
   },
   "resolutions": {
     "angular": "1.5.6"

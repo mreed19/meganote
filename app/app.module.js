@@ -3,6 +3,8 @@
     'ui.router',
     'ngFlash',
     'textAngular',
+    'angularSpinner',
+    'ngLoadingSpinner',
     'meganote.notes',
     'meganote.notesForm',
     'meganote.signUp',
