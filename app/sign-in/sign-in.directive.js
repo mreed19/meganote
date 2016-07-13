@@ -56,7 +56,7 @@
                   duration="5000"
                   show-close="false"
                   ></flash-message>
-                <span us-spinner></span>
+                <span us-spinner="{top:100}"></span>
               </div>
             </div>
           </div>
