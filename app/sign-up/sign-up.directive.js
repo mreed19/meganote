@@ -18,15 +18,12 @@
                 () => $state.go('notes.form', { noteId: undefined }),
                 res => {
                   if (res.data.errors) {
-                    if (res.data.errors.name) {
-                      Flash.create('danger', res.data.errors.name.message);
+                    var message = 'Oops! Something went wrong.<ul>';
+                    for (var key of Object.keys(res.data.errors)) {
+                      message += '<li>' + res.data.errors[key].message + '</li>';
                     }
-                    if (res.data.errors.username) {
-                      Flash.create('danger', res.data.errors.username.message);
-                    }
-                  }
-                  else {
-                    Flash.create('danger', res.data.message);
+                    message += '</ul>';
+                    Flash.create('danger', message);
                   }
                 }
               );

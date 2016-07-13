@@ -17,11 +17,13 @@
             UsersService.update(vm.user).then(
               () => Flash.create('success', 'Successfully updated user.'),
               res =>  {
-                if (res.data.errors.name) {
-                  Flash.create('danger', res.data.errors.name.message);
-                }
-                if (res.data.errors.username) {
-                  Flash.create('danger', res.data.errors.username.message);
+                if (res.data.errors) {
+                  var message = 'Oops! Something went wrong.<ul>';
+                  for (var key of Object.keys(res.data.errors)) {
+                    message += '<li>' + res.data.errors[key].message + '</li>';
+                  }
+                  message += '</ul>';
+                  Flash.create('danger', message);
                 }
               }
             );
