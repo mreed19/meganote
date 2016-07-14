@@ -17,4 +17,15 @@
   function configFunction($urlRouterProvider) {
     $urlRouterProvider.otherwise('/notes/');
   }
+
+  run.$inject = ['$rootScope', '$state'];
+  function run($rootScope, $state) {
+    $rootScope.$on('$stateChangeSucess', () => {
+      $rootScope.$state = $state;
+    });
+
+    $rootScope.$on('$stateChangError', () => {
+      $state.go('sign-in');
+    });
+  }
 }

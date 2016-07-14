@@ -14,6 +14,9 @@
         controllerAs: 'vm',
         resolve: {
           notesLoaded: notesLoaded
+        },
+        data: {
+          title: 'Notes'
         }
       })
 
