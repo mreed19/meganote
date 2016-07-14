@@ -23,8 +23,8 @@
       if (vm.note._id) {
         NotesService.update(vm.note)
         .then(res => {
-          vm.note = angular.copy(res.data.note);
-          Flash.create('success', res.data.message);
+          vm.note = angular.copy(res.data);
+          Flash.create('success', 'Saved!');
         },
         () => Flash.create('danger', 'Oops! Something went wrong')
         );
@@ -32,8 +32,8 @@
       else {
         NotesService.create(vm.note)
         .then(res => {
-          vm.note = res.data.note;
-          Flash.create('success', res.data.message);
+          vm.note = res.data;
+          Flash.create('success', 'Created!');
           $state.go('notes.form', {
             noteId: vm.note._id
           });

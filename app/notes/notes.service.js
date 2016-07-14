@@ -31,7 +31,7 @@
       const notesPromise = $http.post(apiURI, {
         note: note
       });
-      notesPromise.then(res => service.notes.unshift(res.data.note));
+      notesPromise.then(res => service.notes.unshift(res.data));
       return notesPromise;
     }
 
@@ -40,15 +40,15 @@
         note: note
       });
       notesPromise.then(res => {
-        service.removeById(res.data.note._id);
-        service.notes.unshift(res.data.note);
+        service.removeById(res.data._id);
+        service.notes.unshift(res.data);
       });
       return notesPromise;
     }
 
     function destroy(note) {
       const notesPromise = $http.delete(`${apiURI}${note._id}`);
-      notesPromise.then(res => service.removeById(res.data.note._id));
+      notesPromise.then(res => service.removeById(res.data._id));
       return notesPromise;
     }
 
