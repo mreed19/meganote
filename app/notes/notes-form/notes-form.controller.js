@@ -11,6 +11,7 @@
     vm.clearForm = clearForm;
     vm.save = save;
     vm.destroy = destroy;
+    vm.refresh = refresh;
 
     /////////////////////
 
@@ -26,21 +27,26 @@
       vm.editing = false;
     }
 
+    function refresh() {
+      $scope.$parent.vm.refresh();
+    }
+
     function save() {
       if (vm.note._id) {
-      //   NotesService.update(vm.note)
-      //   .then(res => {
-      //     vm.note = angular.copy(res.data);
-      //     Flash.create('success', 'Saved!');
-      //   },
-      //   () => Flash.create('danger', 'Oops! Something went wrong')
-      //   );
+        vm.note.$update({ id: vm.note._id })
+        .then(note => {
+          vm.refresh();
+          vm.note = note;
+          Flash.create('success', 'Saved!');
+        },
+        () => Flash.create('danger', 'Oops! Something went wrong')
+        );
       }
       else {
         vm.note.$save()
           .then(
             note=> {
-              $scope.$parent.vm.refresh();
+              vm.refresh();
               vm.note = note;
               Flash.create('success', 'Created!');
               $state.go('notes.form', {
@@ -53,13 +59,14 @@
     }
 
     function destroy() {
-      // NotesService.destroy(vm.note)
-      // .then(
-      //   () => {
-      //     $state.go('notes.form', { noteId: undefined });
-      //   },
-      //   () => Flash.create('danger', 'Oops! Something went wrong!')
-      // );
+      vm.note.$delete({ id: vm.note._id })
+      .then(
+        () => {
+          vm.refresh();
+          $state.go('notes.form', { noteId: undefined });
+        },
+        () => Flash.create('danger', 'Oops! Something went wrong!')
+      );
     }
   }
 }
