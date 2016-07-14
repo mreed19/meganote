@@ -37,6 +37,7 @@
     'bower_components/textAngular/dist/textAngular.min.js',
     'bower_components/spin.js/spin.js',
     'bower_components/angular-spinner/angular-spinner.js',
+    'bower_components/angular-resource/angular-resource.min.js'
   ];
 
   var cssFiles = [

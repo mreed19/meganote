@@ -5,6 +5,7 @@
     'textAngular',
     'angularSpinner',
     'ngLoadingSpinner',
+    'ngResource',
     'meganote.notes',
     'meganote.notesForm',
     'meganote.signUp',
