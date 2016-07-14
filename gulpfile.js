@@ -21,29 +21,28 @@
 
   var jsFiles = [
     'app/**/*.js',
-    '!app/bower_components/**/*',
     '!app/content/bundle.js',
     '!app/content/vendor.js'
   ];
 
   var vendorFiles = [
-    'app/bower_components/jquery/dist/jquery.min.js',
-    'app/bower_components/bootstrap/dist/js/bootstrap.min.js',
-    'app/bower_components/angular-loader/angular-loader.min.js',
-    'app/bower_components/angular/angular.min.js',
-    'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
-    'app/bower_components/angular-flash-alert/dist/angular-flash.js',
-    'app/bower_components/textAngular/dist/textAngular-rangy.min.js',
-    'app/bower_components/textAngular/dist/textAngular-sanitize.min.js',
-    'app/bower_components/textAngular/dist/textAngular.min.js',
-    'app/bower_components/spin.js/spin.js',
-    'app/bower_components/angular-spinner/angular-spinner.js',
+    'bower_components/jquery/dist/jquery.min.js',
+    'bower_components/bootstrap/dist/js/bootstrap.min.js',
+    'bower_components/angular-loader/angular-loader.min.js',
+    'bower_components/angular/angular.min.js',
+    'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+    'bower_components/angular-flash-alert/dist/angular-flash.js',
+    'bower_components/textAngular/dist/textAngular-rangy.min.js',
+    'bower_components/textAngular/dist/textAngular-sanitize.min.js',
+    'bower_components/textAngular/dist/textAngular.min.js',
+    'bower_components/spin.js/spin.js',
+    'bower_components/angular-spinner/angular-spinner.js',
   ];
 
   var cssFiles = [
-    'app/bower_components/font-awesome/css/font-awesome.min.css',
-    'app/bower_components/bootstrap/dist/css/bootstrap.css',
-    'app/bower_components/textAngular/dist/textAngular.css',
+    'bower_components/font-awesome/css/font-awesome.min.css',
+    'bower_components/bootstrap/dist/css/bootstrap.css',
+    'bower_components/textAngular/dist/textAngular.css',
     'app/content/app.css'
   ];
 
@@ -100,6 +99,8 @@
       'gulpfile.js',
       '!app/content/bundle.*',
       '!app/content/vendor.*',
-    ], ['bundle']);
+    ], ['bundle', 'css']);
+
+    gulp.watch(['bower_components/**/*'], ['vendor', 'css']);
   }
 })();
