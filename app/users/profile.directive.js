@@ -7,12 +7,17 @@
       'CurrentUser',
       'UsersService',
       (Flash, CurrentUser, UsersService) => {
+        let flash = false;
         class UserProfileController {
           constructor() {
             var vm = this;
             vm.user = angular.copy(CurrentUser.get());
           }
           submit() {
+            if (Number.isInteger(flash)) {
+              Flash.dismiss(flash);
+              flash = false;
+            }
             var vm = this;
             UsersService.update(vm.user).then(
               () => Flash.create('success', 'Successfully updated user.'),
@@ -23,7 +28,7 @@
                     message += '<li>' + res.data.errors[key].message + '</li>';
                   }
                   message += '</ul>';
-                  Flash.create('danger', message);
+                  flash = Flash.create('danger', message);
                 }
               }
             );
@@ -66,8 +71,8 @@
                     </a>
                 </form>
                 <flash-message
-                  duration="5000"
-                  show-close="false"
+                  duration="0"
+                  show-close="true"
                   ></flash-message>
                 <span us-spinner="{top:100}"></span>
               </div>

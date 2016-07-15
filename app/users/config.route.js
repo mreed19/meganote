@@ -10,7 +10,10 @@
       template: '<sign-up></sign-up>',
       data: {
         title: 'Sign up'
-      }
+      },
+      onExit: ['Flash', (Flash) => {
+        Flash.clear();
+      }]
     })
 
     .state('sign-in', {
@@ -18,7 +21,10 @@
       template: '<sign-in></sign-in>',
       data: {
         title: 'Sign in'
-      }
+      },
+      onExit: ['Flash', (Flash) => {
+        Flash.clear();
+      }]
     })
 
     .state('user-profile', {
@@ -26,7 +32,10 @@
       template: '<user-profile></user-profile>',
       data: {
         title: 'Profile'
-      }
+      },
+      onExit: ['Flash', (Flash) => {
+        Flash.clear();
+      }]
     });
   }
 }

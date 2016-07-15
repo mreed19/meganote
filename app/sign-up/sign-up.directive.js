@@ -8,11 +8,16 @@
       'UsersService',
       ($state, Flash, UsersService) => {
 
+        let flash = false;
         class SignUpController {
           constructor() {
             this.user = {};
           }
           submit() {
+            if (Number.isInteger(flash)) {
+              Flash.dismiss(flash);
+              flash = false;
+            }
             UsersService.create(this.user)
               .then(
                 () => $state.go('notes.form', { noteId: undefined }),
@@ -23,7 +28,7 @@
                       message += '<li>' + res.data.errors[key].message + '</li>';
                     }
                     message += '</ul>';
-                    Flash.create('danger', message);
+                    flash = Flash.create('danger', message);
                   }
                 }
               );
@@ -80,8 +85,8 @@
                   </span>
                 </form>
                 <flash-message
-                  duration="5000"
-                  show-close="false"
+                  duration="0"
+                  show-close="true"
                 ></flash-message>
                 <span us-spinner="{top:100}"></span>
               </div>

@@ -7,13 +7,18 @@
       'Flash',
       'UsersService',
       ($state, Flash, UsersService) => {
+        let flash = false;
         class SignInController {
           submit() {
             var vm = this;
+            if (Number.isInteger(flash)) {
+              Flash.dismiss(flash);
+              flash = false;
+            }
             UsersService.login(vm.user)
               .then(
                 () => $state.go('notes.form', { noteId: undefined }),
-                res => Flash.create('danger', res.data.message)
+                res => flash = Flash.create('danger', res.data.message)
               );
           }
         }
@@ -53,8 +58,8 @@
                   </span>
                 </form>
                 <flash-message
-                  duration="5000"
-                  show-close="false"
+                  duration="0"
+                  show-close="true"
                   ></flash-message>
                 <span us-spinner="{top:100}"></span>
               </div>
