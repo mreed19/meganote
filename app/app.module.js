@@ -12,7 +12,8 @@
     'meganote.users',
     'meganote.signIn'
   ])
-  .config(configFunction);
+  .config(configFunction)
+  .run(run);
 
   configFunction.$inject = ['$urlRouterProvider'];
   function configFunction($urlRouterProvider) {
@@ -21,11 +22,11 @@
 
   run.$inject = ['$rootScope', '$state'];
   function run($rootScope, $state) {
-    $rootScope.$on('$stateChangeSucess', () => {
+    $rootScope.$on('$stateChangeSuccess', () => {
       $rootScope.$state = $state;
     });
 
-    $rootScope.$on('$stateChangError', () => {
+    $rootScope.$on('$stateChangeError', () => {
       $state.go('sign-in');
     });
   }
