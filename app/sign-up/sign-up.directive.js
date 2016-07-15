@@ -52,7 +52,8 @@
                       type="text"
                       name="name"
                       autofocus="autofocus"
-                      required>
+                      required
+                      focus-on>
                   </p>
                   <p>
                     <label for="username">Username</label><br>

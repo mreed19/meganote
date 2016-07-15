@@ -41,7 +41,8 @@
                       ng-model="vm.user.username"
                       type="text"
                       name="username"
-                      required>
+                      required
+                      focus-on>
                   </p>
                   <p>
                     <label for="password">Password</label><br>
